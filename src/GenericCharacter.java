@@ -1,4 +1,4 @@
-
+import java.lang.StringBuilder;
 public abstract class GenericCharacter {
 	
 	/*
@@ -38,9 +38,17 @@ public abstract class GenericCharacter {
 		return statNodeArray;
 	}
 	
-	public void setStatNode (int nodePosition, String statName) {
+	public void setStatNodeName (int nodePosition, String statName) {
 		if (nodePosition < statNodeArray.length) {
 			this.statNodeArray[nodePosition].setStatName(statName);
+		} else {
+			System.out.print("index out of bound");
+		}
+	}
+	
+	public void setStatNodeValue (int nodePosition, int statValue) {
+		if (nodePosition < statNodeArray.length) {
+			this.statNodeArray[nodePosition].setStatValue(statValue);;
 		} else {
 			System.out.print("index out of bound");
 		}
@@ -67,7 +75,15 @@ public abstract class GenericCharacter {
 
 	@Override
 	public String toString() {
-		return ("Name of the character: " + Name);
+		
+		StringBuilder tempString = new StringBuilder("Character Name: " + this.Name);
+		
+		for( StatNode tempNode : this.statNodeArray ) {
+			String nodeString = String.format("%s: %d, ", tempNode.getStatName(), tempNode.getStatValue() );
+			tempString.append(nodeString);
+		}
+		
+		return tempString.toString();
 	}
 	
 	/*
