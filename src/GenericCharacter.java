@@ -1,31 +1,32 @@
 
 public abstract class GenericCharacter {
-	
-	protected String Name;
-	protected Object Stat;
-	
-	public GenericCharacter(String NewName) {
-		Name = NewName;
+
+	private String Name;
+	private StatNode[] statNodeArray;
+
+	public GenericCharacter( int statNodeArraySize) {
+		statNodeArray = new StatNode[statNodeArraySize];
 	}
-	
+
 	public String getName() {
 		return Name;
 	}
+
 	public void setName(String name) {
 		Name = name;
 	}
-	public Object getStat() {
-		return Stat;
+
+	public void readStatNode(int nodePosition) {
+		if (nodePosition < statNodeArray.length) {
+			System.out.println(statNodeArray[nodePosition]);
+		} else {
+			System.out.print("Index out of Bounds");
+		}
 	}
-	public void setStat(Object stat) {
-		Stat = stat;
-	}
-	
+
 	@Override
 	public String toString() {
-		return Name;
+		return Name ;
 	}
-	
-	
-	
+
 }
