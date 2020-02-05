@@ -19,7 +19,13 @@ public abstract class GenericCharacter {
 	 * Constructor for GenericCharacter
 	 */
 	public GenericCharacter(int statNodeArraySize) {
+		Name = "Empty Field";
 		statNodeArray = new StatNode[statNodeArraySize];
+		
+		for(int i = 0; i < statNodeArray.length; i++) {
+			statNodeArray[i] = new StatNode();
+		}
+		
 	}
 
 	/*
@@ -33,6 +39,10 @@ public abstract class GenericCharacter {
 	public void setName(String name) {
 		Name = name;
 	}
+	
+	public StatNode[] getStatNodeArray () {
+		return statNodeArray;
+	}
 
 	public StatNode getStatNode(int nodePosition) {
 		if (nodePosition > -1 && nodePosition < statNodeArray.length) {
@@ -43,7 +53,7 @@ public abstract class GenericCharacter {
 	}
 
 	public void setStatNodeName(int nodePosition, String statName) {
-		if (nodePosition > -1 && nodePosition < statNodeArray.length) {
+		if (nodePosition > -1 && nodePosition < statNodeArray.length) {	
 			this.statNodeArray[nodePosition].setStatName(statName);
 		} else {
 			System.out.print("index out of bound");
@@ -99,7 +109,22 @@ public abstract class GenericCharacter {
 	public boolean equals(Object obj) {
 		if ((GenericCharacter) obj instanceof GenericCharacter) {
 			GenericCharacter temp = (GenericCharacter) obj;
-			if (temp.Name.equals(this.Name) && temp.statNodeArray.equals(this.statNodeArray)) {
+			if (temp.Name.equals(this.Name)) {
+				
+				StatNode[] tempArray = temp.getStatNodeArray();
+				
+				for(int i = 0; i < statNodeArray.length; i++ ) {
+					
+					if(!statNodeArray[i].getStatName().equals(tempArray[i].getStatName())) {
+						return false;
+					}
+					
+					if(statNodeArray[i].getStatValue()!=(tempArray[i].getStatValue())) {
+						return false;
+					}
+					
+				}
+				
 				return true;
 			} else {
 				return false;

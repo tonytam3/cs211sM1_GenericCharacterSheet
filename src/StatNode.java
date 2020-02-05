@@ -1,7 +1,7 @@
 
 public class StatNode {
-	private String StatName;
-	private int StatValue;
+	private String StatName = "Empty Field";
+	private int StatValue = 0;
 	
 	public String getStatName() {
 		return StatName;

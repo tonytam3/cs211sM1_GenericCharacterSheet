@@ -23,8 +23,9 @@ public class PathfinderCharacter extends GenericCharacter {
 		this.setStatNodeName(7, "Armor Class");
 		this.setStatNodeName(8, "Touch Armor Class");
 		this.setStatNodeName(9, "Flat-Footed Armor Class");
-		this.setStatNodeName(10, "Initiave");
+		this.setStatNodeName(10, "Initiative");
 		this.setStatNodeName(11, "Base Attack Bonus");
+
 	}
 
 	/*
@@ -113,6 +114,14 @@ public class PathfinderCharacter extends GenericCharacter {
 		} else {
 			return "Node not found";
 		}
+	}
+	
+	public void meaninglessAction() {
+		System.out.println("Wave");
+	}
+	
+	public void moveDistance() {
+		System.out.println("Doesn't have legs");
 	}
 	
 }
