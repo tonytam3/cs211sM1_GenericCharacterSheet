@@ -1,4 +1,3 @@
-import java.lang.StringBuilder;
 
 public class PathfinderCharacter extends GenericCharacter {
 

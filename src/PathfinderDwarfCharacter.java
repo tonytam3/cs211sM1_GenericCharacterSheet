@@ -1,7 +1,7 @@
 import java.lang.StringBuilder;
 
 public class PathfinderDwarfCharacter extends PathfinderCharacter {
-	
+
 	private int conStatBonus = 2;
 	private int wisStatBonus = 2;
 	private int chaStatBonus = -2;
@@ -14,9 +14,14 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 		this.setName(name);
 
 		totalBaseStatArray = this.getStatNodeArray().clone();
-		
+
+		for (int i = 0; i < totalBaseStatArray.length; i++) {
+			totalBaseStatArray[i] = new StatNode();
+			totalBaseStatArray[i].copy(this.getStatNode(i));
+		}
+
 		this.saveTotalBaseStatArray();
-		
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -55,8 +60,8 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 
 		totalBaseStatArray[2].setStatValue(this.getStatNode(2).getStatValue() + conStatBonus);
 		totalBaseStatArray[4].setStatValue(this.getStatNode(4).getStatValue() + wisStatBonus);
-		totalBaseStatArray[5].setStatValue(this.getStatNode(4).getStatValue() + chaStatBonus);	
-		
+		totalBaseStatArray[5].setStatValue(this.getStatNode(4).getStatValue() + chaStatBonus);
+
 	}
 
 	@Override
@@ -75,15 +80,16 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 
 	@Override
 	public boolean equals(Object obj) {
-		//checking if the obj is an instance of this class
+		// checking if the obj is an instance of this class
 		if (obj instanceof PathfinderDwarfCharacter) {
 
 			PathfinderDwarfCharacter tempObject = (PathfinderDwarfCharacter) obj;
-			//checking if the names of the object is the same.
+			// checking if the names of the object is the same.
 			if (tempObject.getName().equals(this.getName())) {
 
 				StatNode[] tempArray = tempObject.getTotalStatArray();
-				//This loop goes through all the entire stat array of both objects for name and value comparison.
+				// This loop goes through all the entire stat array of both objects for name and
+				// value comparison.
 				for (int i = 0; i < tempArray.length; i++) {
 
 					if (tempArray[i].getStatName() != this.totalBaseStatArray[i].getStatName()) {
@@ -101,19 +107,19 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 			}
 
 		} else {
-			//if the obj is not an instance of this class, then return false.
+			// if the obj is not an instance of this class, then return false.
 			return false;
-			
+
 		}
 		return false;
 
 	}
-	
+
 	@Override
 	public void meaninglessAction() {
 		System.out.println("Drinks a lager");
 	}
-	
+
 	@Override
 	public void moveDistance() {
 		System.out.println("Moves 20 feet");

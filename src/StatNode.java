@@ -15,4 +15,10 @@ public class StatNode {
 	public void setStatValue(int statValue) {
 		StatValue = statValue;
 	}
+	
+	public void copy(StatNode obj) {
+		this.setStatName(obj.getStatName());
+		this.setStatValue(obj.getStatValue());
+	}
+	
 }

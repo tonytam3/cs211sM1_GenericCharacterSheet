@@ -10,6 +10,10 @@ public class PathfinderHalfOrcCharacter extends PathfinderCharacter {
 	 * Half-Orcs get a +2 to a stat of their choice.
 	 */
 	private int statBonusChoice = 0;
+	
+	/*
+	 * Creating a copy of the statArray from the parent constructor class to keep track of any modifications to individual stats.
+	 */
 	private StatNode[] totalBaseStatArray;
 
 	public PathfinderHalfOrcCharacter(String name) {
@@ -19,12 +23,13 @@ public class PathfinderHalfOrcCharacter extends PathfinderCharacter {
 
 		totalBaseStatArray = this.getStatNodeArray().clone();
 		
-		for (int i = 0; i<totalBaseStatArray.length; i++) {
+		totalBaseStatArray[0].setStatName("test");		
+	
+		for (int i = 0; i < totalBaseStatArray.length; i++) {
 			totalBaseStatArray[i] = new StatNode();
-			totalBaseStatArray[i].setStatName(this.getStatNodeName(i));
-			totalBaseStatArray[i].setStatValue(this.getStatNodeValue(i));
+			totalBaseStatArray[i].copy(this.getStatNode(i));
 		}
-		
+
 		saveTotalBaseStatArray();
 		// TODO Auto-generated constructor stub
 	}

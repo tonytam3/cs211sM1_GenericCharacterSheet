@@ -46,12 +46,12 @@ public class PathfinderUnitTester {
 		System.out.println("Testing the toString method of grandChild class");
 		System.out.println(firstCharacter.toString()+"\n");
 		
-		System.out.println("Upcasting firstCharacter to Generic Character to test if grandChild array clone funtion is working correctly");
+		System.out.println("Upcasting firstCharacter to Generic Character to test if grandChild array clone funtion in the constructor is working correctly");
 		GenericCharacter tempCharacter = (GenericCharacter) firstCharacter;
-		System.out.println(tempCharacter.getStatNode(0).getStatValue()+"\n");
-		System.out.println(firstCharacter.getStatNodeValue(0)+"\n");
-		StatNode[] tempArray = firstCharacter.getTotalStatArray();
-		System.out.println(tempArray[0].getStatValue()+"\n");
+		System.out.println("0: " + tempCharacter.getStatNode(0).getStatValue()+"\n");//should base stats using the GenericCharacter getStatNode method call
+		System.out.println("0: " + firstCharacter.getStatNodeValue(0)+"\n");//should base stats using the PathfinderCharacter retrieve Node Value method
+		StatNode[] tempArray = firstCharacter.getTotalStatArray();//retrieving half-orc total stat (base stats + racial stat modifiers) 
+		System.out.println("2: " + tempArray[0].getStatValue()+"\n");//displaying the modified strength stat
 		
 		System.out.println("firstCharacter, Hank....");
 		firstCharacter.meaninglessAction();
@@ -76,7 +76,15 @@ public class PathfinderUnitTester {
 		fifthCharacter = (PathfinderCharacter) firstCharacter;
 		
 		fifthCharacter.meaninglessAction();
-		characterArray[4].moveDistance();
+		fifthCharacter.moveDistance();
+		
+		System.out.print("\n");
+		StatNode firstNode = new StatNode();
+		firstNode.setStatName("Jack");
+		StatNode secondNode = new StatNode();
+		secondNode.copy(firstNode);
+		System.out.println("Testing copy function of StatNode. FirstNode is named Jack, Second has an empty field");
+		System.out.println("SecondNode name is: "+secondNode.getStatName());
 
 	}
 
