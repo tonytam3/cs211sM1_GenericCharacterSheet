@@ -14,6 +14,7 @@ public abstract class GenericCharacter {
 
 	private String Name;
 	private StatNode[] statNodeArray;
+	private static int numberOfObjs = 0;
 
 	/*
 	 * Constructor for GenericCharacter
@@ -25,6 +26,8 @@ public abstract class GenericCharacter {
 		for(int i = 0; i < statNodeArray.length; i++) {
 			statNodeArray[i] = new StatNode();
 		}
+		
+		numberOfObjs++;
 		
 	}
 
