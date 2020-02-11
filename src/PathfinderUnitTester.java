@@ -125,9 +125,13 @@ public class PathfinderUnitTester {
 		
 		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
 		
+		System.out.println(secondCharacter.getName()+ "'s Level is: " +secondCharacter.getLevel());
 		
+		System.out.println("The level difference between Hank and Bill is: " + firstCharacter.compareTo(secondCharacter));
 		
+		System.out.println("The level difference between Bill and Bill is: " + secondCharacter.compareTo(secondCharacter));
 		
+		System.out.println("The level difference between Bill and Hank is: " + secondCharacter.compareTo(firstCharacter));
 		
 		
 		

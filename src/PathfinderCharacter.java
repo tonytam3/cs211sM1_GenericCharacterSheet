@@ -1,5 +1,5 @@
 
-public class PathfinderCharacter extends GenericCharacter implements Comparable <PathfinderCharacter> {
+public class PathfinderCharacter extends GenericCharacter implements Comparable<PathfinderCharacter> {
 
 	// Pathfinder is a table top roleplayer system analogous to Dungeons and Dragon
 
@@ -10,7 +10,6 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 	private PathfinderLevelFormat levelFormat;
 
 	private int[] pointBuyChart = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 };
-
 
 	public PathfinderCharacter() {
 		super(statArraySize);
@@ -28,12 +27,12 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 		this.setStatNodeName(9, "Flat-Footed Armor Class");
 		this.setStatNodeName(10, "Initiative");
 		this.setStatNodeName(11, "Base Attack Bonus");
-		
+
 		this.setLevel(1);
 		levelFormat = PathfinderLevelFormat.SLOW;
 
 	}
-	
+
 	public PathfinderLevelFormat getLevelFormat() {
 		return levelFormat;
 	}
@@ -41,7 +40,7 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 	public int getExperiencePoints() {
 		return experiencePoints;
 	}
-	
+
 	public String getStatNodeName(int nodePosition) {
 
 		if (nodePosition > -1 && nodePosition < statArraySize) {
@@ -62,8 +61,6 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 			return 0;
 		}
 	}
-
-	
 
 	/*
 	 * This method is for setting the Ability Score Point Format. 0 = (Low Fantasy,
@@ -136,7 +133,7 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 		this.experiencePoints = experiencePoints;
 		this.setLevel(levelFormat.returnLevelPosition(this.experiencePoints));
 	}
-	
+
 	public void setLevelFormat(PathfinderLevelFormat levelFormat) {
 		this.levelFormat = levelFormat;
 		this.setLevel(levelFormat.returnLevelPosition(this.experiencePoints));
@@ -152,9 +149,14 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 
 	@Override
 	public int compareTo(PathfinderCharacter object) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		if (this.getLevel() < object.getLevel()) {
+			return this.getLevel() - object.getLevel();
+		} else if (this.getLevel() == object.getLevel()) {
+			return 0;
+		} else {
+			return this.getLevel() - object.getLevel();
+		}
 	}
-
 
 }
