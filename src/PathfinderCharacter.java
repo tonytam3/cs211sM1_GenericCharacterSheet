@@ -1,12 +1,16 @@
 
-public class PathfinderCharacter extends GenericCharacter {
+public class PathfinderCharacter extends GenericCharacter implements Comparable <PathfinderCharacter> {
 
 	// Pathfinder is a table top roleplayer system analogous to Dungeons and Dragon
 
 	static final int statArraySize = 12;
 	private int AbilityScorePointFormat = 0;
 	private int AbilityScorePointAmount = 0;
+	private int experiencePoints = 0;
+	PathfinderLevelFormat levelFormat;
+	
 	private int[] pointBuyChart = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 };
+
 
 	public PathfinderCharacter() {
 		super(statArraySize);
@@ -24,8 +28,38 @@ public class PathfinderCharacter extends GenericCharacter {
 		this.setStatNodeName(9, "Flat-Footed Armor Class");
 		this.setStatNodeName(10, "Initiative");
 		this.setStatNodeName(11, "Base Attack Bonus");
+		
+		this.setLevel(1);
+		levelFormat = PathfinderLevelFormat.SLOW;
 
 	}
+	
+	public int getExperiencePoints() {
+		return experiencePoints;
+	}
+	
+	public String getStatNodeName(int nodePosition) {
+
+		if (nodePosition > -1 && nodePosition < statArraySize) {
+
+			return this.getStatNode(nodePosition).getStatName();
+
+		} else {
+			return "Node not found";
+		}
+	}
+
+	public int getStatNodeValue(int nodePosition) {
+		if (nodePosition > -1 && nodePosition < statArraySize) {
+
+			return this.getStatNode(nodePosition).getStatValue();
+
+		} else {
+			return 0;
+		}
+	}
+
+	
 
 	/*
 	 * This method is for setting the Ability Score Point Format. 0 = (Low Fantasy,
@@ -94,33 +128,24 @@ public class PathfinderCharacter extends GenericCharacter {
 		}
 	}
 
-	public int getStatNodeValue(int nodePosition) {
-		if (nodePosition > -1 && nodePosition < statArraySize) {
-
-			return this.getStatNode(nodePosition).getStatValue();
-
-		} else {
-			return 0;
-		}
-	}
-
-	public String getStatNodeName(int nodePosition) {
-		
-		if (nodePosition > -1 && nodePosition < statArraySize) {
-
-			return this.getStatNode(nodePosition).getStatName();
-
-		} else {
-			return "Node not found";
-		}
+	public void setExperiencePoints(int experiencePoints) {
+		this.experiencePoints = experiencePoints;
 	}
 	
+
 	public void meaninglessAction() {
 		System.out.println("Wave");
 	}
-	
+
 	public void moveDistance() {
 		System.out.println("Doesn't have legs");
 	}
-	
+
+	@Override
+	public int compareTo(PathfinderCharacter object) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 }

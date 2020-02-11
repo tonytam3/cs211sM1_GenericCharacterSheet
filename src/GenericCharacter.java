@@ -14,7 +14,8 @@ public abstract class GenericCharacter {
 
 	private String Name;
 	private StatNode[] statNodeArray;
-	private static int numberOfObjs = 0;
+	private static int numberOfObjs = 0;//Module 2 homework's static variable.
+	private int level = 0; //new characters are implied to have a level of zero.
 
 	/*
 	 * Constructor for GenericCharacter
@@ -39,9 +40,6 @@ public abstract class GenericCharacter {
 		return Name;
 	}
 
-	public void setName(String name) {
-		Name = name;
-	}
 	
 	public StatNode[] getStatNodeArray () {
 		return statNodeArray;
@@ -53,6 +51,14 @@ public abstract class GenericCharacter {
 		} else {
 			return null;
 		}
+	}
+
+	public int getLevel() { //Generic Character only has a return level method because different tableTop role-playing systems have different means of doing character advancement.
+		return level;
+	}
+	
+	public void setName(String name) {
+		Name = name;
 	}
 
 	public void setStatNodeName(int nodePosition, String statName) {
@@ -70,6 +76,10 @@ public abstract class GenericCharacter {
 		} else {
 			System.out.print("index out of bound");
 		}
+	}
+	
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	/*
@@ -89,6 +99,8 @@ public abstract class GenericCharacter {
 	public static int getNumberOfObjs() {
 		return numberOfObjs;
 	}
+	
+
 
 	/*
 	 * returns a name.. trying to think of reason why I would want this here
