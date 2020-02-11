@@ -7,8 +7,8 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 	private int AbilityScorePointFormat = 0;
 	private int AbilityScorePointAmount = 0;
 	private int experiencePoints = 0;
-	PathfinderLevelFormat levelFormat;
-	
+	private PathfinderLevelFormat levelFormat;
+
 	private int[] pointBuyChart = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 };
 
 
@@ -34,6 +34,10 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 
 	}
 	
+	public PathfinderLevelFormat getLevelFormat() {
+		return levelFormat;
+	}
+
 	public int getExperiencePoints() {
 		return experiencePoints;
 	}
@@ -130,8 +134,13 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable 
 
 	public void setExperiencePoints(int experiencePoints) {
 		this.experiencePoints = experiencePoints;
+		this.setLevel(levelFormat.returnLevelPosition(this.experiencePoints));
 	}
 	
+	public void setLevelFormat(PathfinderLevelFormat levelFormat) {
+		this.levelFormat = levelFormat;
+		this.setLevel(levelFormat.returnLevelPosition(this.experiencePoints));
+	}
 
 	public void meaninglessAction() {
 		System.out.println("Wave");

@@ -89,7 +89,46 @@ public class PathfinderUnitTester {
 		
 		System.out.print("\n");
 		
-		System.out.print("Number of Character Objects generated is: "+GenericCharacter.getNumberOfObjs());
+		System.out.println("----------Start of Module 2 Homework-------------");
+		
+		System.out.println("Number of Character Objects generated is: "+GenericCharacter.getNumberOfObjs());
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
+		firstCharacter.setExperiencePoints(10000);
+		
+		System.out.println("10,000 experience points added to (Hank) and the current leveling speed is: " + firstCharacter.getLevelFormat().toString());
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
+		firstCharacter.setExperiencePoints(firstCharacter.getLevelFormat().returnBaseExperiencePoint(10));
+		
+		System.out.println("Hank's experience has been set to the minimum experience for a lv 10 and is: " + firstCharacter.getExperiencePoints());
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
+		System.out.println("Switching leveling format to FAST");
+		
+		firstCharacter.setLevelFormat(PathfinderLevelFormat.FAST);
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
+		firstCharacter.setExperiencePoints(firstCharacter.getLevelFormat().returnBaseExperiencePoint(20));
+		
+		System.out.println("Hank's experience has been set to the minimum experience for a lv 20 and is: " + firstCharacter.getExperiencePoints());
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
+		System.out.println("Switching leveling format back to SLOW");
+		
+		firstCharacter.setLevelFormat(PathfinderLevelFormat.SLOW);
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
+		
+		
+		
+		
 		
 		
 
