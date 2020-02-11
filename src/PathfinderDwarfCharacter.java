@@ -1,6 +1,10 @@
 import java.lang.StringBuilder;
 
 public class PathfinderDwarfCharacter extends PathfinderCharacter {
+	
+	/*
+	 * Dwarves has a +2 bonus to constituion and wisdom stats, but a -2 to charisma. The bonus allocation cannot be user defined.
+	 */
 
 	private int conStatBonus = 2;
 	private int wisStatBonus = 2;
@@ -22,7 +26,6 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 
 		this.saveTotalBaseStatArray();
 
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getConStatBonus() {

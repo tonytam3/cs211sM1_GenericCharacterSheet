@@ -85,6 +85,10 @@ public abstract class GenericCharacter {
 			System.out.print("Index out of Bounds");
 		}
 	}
+	
+	public static int getNumberOfObjs() {
+		return numberOfObjs;
+	}
 
 	/*
 	 * returns a name.. trying to think of reason why I would want this here

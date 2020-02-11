@@ -11,6 +11,7 @@ public class PathfinderUnitTester {
 		
 		PathfinderHalfOrcCharacter thirdCharacter = new PathfinderHalfOrcCharacter ("Hank");
 		PathfinderHalfOrcCharacter forthCharacter = new PathfinderHalfOrcCharacter("Hank");
+		
 		PathfinderCharacter fifthCharacter = new PathfinderCharacter();
 		
 		characterArray[0] = firstCharacter;
@@ -85,6 +86,12 @@ public class PathfinderUnitTester {
 		secondNode.copy(firstNode);
 		System.out.println("Testing copy function of StatNode. FirstNode is named Jack, Second has an empty field");
 		System.out.println("SecondNode name is: "+secondNode.getStatName());
+		
+		System.out.print("\n");
+		
+		System.out.print("Number of Character Objects generated is: "+GenericCharacter.getNumberOfObjs());
+		
+		
 
 	}
 
