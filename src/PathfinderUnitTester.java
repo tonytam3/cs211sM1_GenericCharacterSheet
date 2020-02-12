@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class PathfinderUnitTester {
 	
@@ -91,7 +92,13 @@ public class PathfinderUnitTester {
 		
 		System.out.println("----------Start of Module 2 Homework-------------");
 		
+		//Novel static variable for keeping track of number of characters generated
+				
 		System.out.println("Number of Character Objects generated is: "+GenericCharacter.getNumberOfObjs());
+		
+		//Testing Enum PathfinderLevel Format
+		
+		System.out.println("\n(Testing Enum 'PathfinderLevelFormat' class and methods' effects on int variable 'level' in the Parent Class.)");
 		
 		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
 		
@@ -125,6 +132,12 @@ public class PathfinderUnitTester {
 		
 		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
 		
+		//Testing compareTo Method
+		
+		System.out.println("\n(compareTo method is set to only compare character level)");
+		
+		System.out.println(firstCharacter.getName()+ "'s Level is: " +firstCharacter.getLevel());
+		
 		System.out.println(secondCharacter.getName()+ "'s Level is: " +secondCharacter.getLevel());
 		
 		System.out.println("The level difference between Hank and Bill is: " + firstCharacter.compareTo(secondCharacter));
@@ -133,8 +146,33 @@ public class PathfinderUnitTester {
 		
 		System.out.println("The level difference between Bill and Hank is: " + secondCharacter.compareTo(firstCharacter));
 		
+		//Using compareTo method to sort
 		
+		System.out.println("\n(Updating Characters to have difference levels for sorting)\n");
 		
+		thirdCharacter.setExperiencePoints(secondCharacter.getLevelFormat().returnBaseExperiencePoint(5));
+		
+		System.out.println("\nthirdCharacter" + "'s Level is: " +thirdCharacter.getLevel());
+		
+		forthCharacter.setExperiencePoints(forthCharacter.getLevelFormat().returnBaseExperiencePoint(2));
+		
+		System.out.println("forthCharacter" + "'s Level is: " +forthCharacter.getLevel());
+		
+		System.out.println("fifthCharacter in the characterArray is the original noName fifthCharacter and it" + "'s Level: " +characterArray[4].getLevel());
+		
+		System.out.println();
+		
+		for(PathfinderCharacter temp : characterArray) {
+			System.out.println(temp.getName() + "'s level is: " + temp.getLevel());
+		}
+		
+		Arrays.sort(characterArray);
+		
+		System.out.println("\nUsing Java Class Array sort method on 'characterArray'\n");
+		
+		for(PathfinderCharacter temp : characterArray) {
+			System.out.println(temp.getName() + "'s level is: " + temp.getLevel());
+		}
 
 	}
 
