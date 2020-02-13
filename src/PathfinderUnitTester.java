@@ -146,7 +146,7 @@ public class PathfinderUnitTester {
 		
 		System.out.println("The level difference between Bill and Hank is: " + secondCharacter.compareTo(firstCharacter));
 		
-		//Using compareTo method to sort
+		//Using Arrays.sort on characterArray using PathfinderCharacter compareTo method
 		
 		System.out.println("\n(Updating Characters to have difference levels for sorting)\n");
 		
