@@ -18,7 +18,9 @@ public abstract class GenericCharacter {
 	private int level = 0; //new characters are implied to have a level of zero.
 
 	/*
-	 * Constructor for GenericCharacter
+	 * Constructor for GenericCharacter. Sets the name to empty field and initializes
+	 * the node Array of the 'supplied' size. Finally increments the number of objects
+	 * that has used 'GenericCharacter'
 	 */
 	public GenericCharacter(int statNodeArraySize) {
 		Name = "Empty Field";

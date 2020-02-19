@@ -11,7 +11,7 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 
 	private int[] pointBuyChart = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 };
 
-	public PathfinderCharacter() {
+	private PathfinderCharacter(PathfinderCharacterBuilder object) {
 		super(statArraySize);
 
 		this.setStatNodeName(0, "Strength");
@@ -31,6 +31,50 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 		this.setLevel(1);
 		levelFormat = PathfinderLevelFormat.SLOW;
 
+	}
+	
+	public static class PathfinderCharacterBuilder{
+		
+		String name;
+		int str, dex, con, inte, wis, cha;
+		
+		public PathfinderCharacterBuilder (String name) {
+			this.name = name;
+		}
+		
+		public PathfinderCharacterBuilder str (int value) {
+			this.str = value;
+			return this;
+		}
+		
+		public PathfinderCharacterBuilder dex (int value) {
+			this.dex = value;
+			return this;
+		}
+		
+		public PathfinderCharacterBuilder con (int value) {
+			this.con = value;
+			return this;
+		}
+		
+		public PathfinderCharacterBuilder inte (int value) {
+			this.inte = value;
+			return this;
+		}
+		
+		public PathfinderCharacterBuilder wis  (int value) {
+			this.wis = value;
+			return this;
+		}
+		
+		public PathfinderCharacterBuilder cha (int value) {
+			this.cha = value;
+			return this;
+		}
+		
+		public PathfinderCharacter build() {
+			return new PathfinderCharacter(this);
+		}
 	}
 
 	public PathfinderLevelFormat getLevelFormat() {
