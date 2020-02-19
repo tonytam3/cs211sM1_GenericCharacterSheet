@@ -6,14 +6,14 @@ public class PathfinderUnitTester {
 		
 		PathfinderCharacter[] characterArray = new PathfinderCharacter[5];
 		
-		PathfinderHalfOrcCharacter firstCharacter = new PathfinderHalfOrcCharacter("Hank");
+		PathfinderCharacter firstCharacter = new PathfinderHalfOrcCharacter("Hank");
 		
 		PathfinderDwarfCharacter secondCharacter = new PathfinderDwarfCharacter("Bill");
 		
 		PathfinderHalfOrcCharacter thirdCharacter = new PathfinderHalfOrcCharacter ("Hank");
 		PathfinderHalfOrcCharacter forthCharacter = new PathfinderHalfOrcCharacter("Hank");
 		
-		PathfinderCharacter fifthCharacter = new PathfinderCharacter();
+		PathfinderDwarfCharacter fifthCharacter = new PathfinderDwarfCharacter("noName");
 		
 		characterArray[0] = firstCharacter;
 		characterArray[1] = secondCharacter;
