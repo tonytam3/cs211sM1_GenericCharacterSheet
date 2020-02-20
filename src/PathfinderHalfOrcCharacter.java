@@ -1,6 +1,6 @@
 import java.lang.StringBuilder;
 
-public class PathfinderHalfOrcCharacter{
+public class PathfinderHalfOrcCharacter extends PathfinderCharacter{
 
 	private int statBonusAmount = 2;
 
@@ -11,8 +11,6 @@ public class PathfinderHalfOrcCharacter{
 	 */
 	private int statBonusChoice = 0;
 	
-	PathfinderCharacter halfOrc;
-	
 	/*
 	 * Creating a copy of the statArray from the parent constructor class to keep track of any modifications to individual stats.
 	 */
@@ -20,17 +18,16 @@ public class PathfinderHalfOrcCharacter{
 
 	public PathfinderHalfOrcCharacter(String name) {
 
-		halfOrc = new PathfinderCharacter.PathfinderCharacterBuilder("EmptyField")
-				.str(0).dex(0).con(0).inte(0).wis(0).cha(0).build();
-		halfOrc.setName(name);
+		super();
+		this.setName(name);
 
-		totalBaseStatArray = halfOrc.getStatNodeArray().clone();
+		totalBaseStatArray = this.getStatNodeArray().clone();
 		
 		totalBaseStatArray[0].setStatName("test");		
 	
 		for (int i = 0; i < totalBaseStatArray.length; i++) {
 			totalBaseStatArray[i] = new StatNode();
-			totalBaseStatArray[i].copy(halfOrc.getStatNode(i));
+			totalBaseStatArray[i].copy(this.getStatNode(i));
 		}
 
 		saveTotalBaseStatArray();
@@ -61,14 +58,14 @@ public class PathfinderHalfOrcCharacter{
 
 	public void saveTotalBaseStatArray() {
 		//retrieving the original array, adding all stat Modifiers. So far just statBonus
-		totalBaseStatArray[statBonusChoice].setStatValue(halfOrc.getStatNode(statBonusChoice).getStatValue() + statBonusAmount);
+		totalBaseStatArray[statBonusChoice].setStatValue(this.getStatNode(statBonusChoice).getStatValue() + statBonusAmount);
 
 	}
 
 	@Override
 	public String toString() {
 
-		StringBuilder tempString = new StringBuilder("Character Name: " + halfOrc.getName() + ", ");
+		StringBuilder tempString = new StringBuilder("Character Name: " + this.getName() + ", ");
 
 		for (StatNode tempNode : this.totalBaseStatArray) {
 			String nodeString = String.format("%s: %d, ", tempNode.getStatName(), tempNode.getStatValue());
@@ -86,7 +83,7 @@ public class PathfinderHalfOrcCharacter{
 
 			PathfinderHalfOrcCharacter tempObject = (PathfinderHalfOrcCharacter) obj;
 			//checking if the names of the object is the same.
-			if (tempObject.halfOrc.getName().equals(this.halfOrc.getName())) {
+			if (tempObject.getName().equals(this.getName())) {
 
 				StatNode[] tempArray = tempObject.getTotalStatArray();
 				//This loop goes through all the entire stat array of both objects for name and value comparison.
