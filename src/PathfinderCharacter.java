@@ -1,13 +1,20 @@
+import java.util.Comparator;
+import java.util.Random;
 
 public class PathfinderCharacter extends GenericCharacter implements Comparable<PathfinderCharacter> {
 
 	// Pathfinder is a table top roleplayer system analogous to Dungeons and Dragon
+
+	static final int str = 0, dex = 1, con = 2, inte = 3, wis = 4, cha = 5;
 
 	static final int statArraySize = 12;
 	private int AbilityScorePointFormat = 0;
 	private int AbilityScorePointAmount = 0;
 	private int experiencePoints = 0;
 	private PathfinderLevelFormat levelFormat;
+	private Money money;
+
+	public final static Comparator<PathfinderCharacter> characterComparator = new PathfinderCharacterComparator();
 
 	private int[] pointBuyChart = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 };
 
@@ -30,9 +37,45 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 
 		this.setLevel(1);
 		levelFormat = PathfinderLevelFormat.SLOW;
+		
+		randomPurse();
+
+	}
+
+	public static class PathfinderCharacterComparator implements Comparator<PathfinderCharacter> {
+
+		@Override
+		public int compare(PathfinderCharacter arg0, PathfinderCharacter arg1) {
+			if (arg0.getLevel() == arg1.getLevel()) {
+				return 0;
+			} else if (arg0.getLevel() < arg1.getLevel()) {
+				return -1;
+			} else {
+				return 1;
+			}
+
+		}
 
 	}
 	
+	public void randomPurse() {
+		Random t = new Random();
+		int t1 = t.nextInt();
+		int t2 = t.nextInt();
+		
+		if(t1<t2) {
+			money = new PathfinderHalfOrcPurse();
+		} else {
+			money = new PathfinderDwarfPurse();
+		}
+		
+	}
+
+	public Money getMoney() {
+		return money;
+	}
+
+
 
 	public PathfinderLevelFormat getLevelFormat() {
 		return levelFormat;
@@ -150,7 +193,7 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 
 	@Override
 	public int compareTo(PathfinderCharacter object) {
-		
+
 		if (this.getLevel() < object.getLevel()) {
 			return this.getLevel() - object.getLevel();
 		} else if (this.getLevel() == object.getLevel()) {

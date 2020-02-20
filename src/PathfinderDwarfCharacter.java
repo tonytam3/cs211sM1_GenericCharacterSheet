@@ -12,12 +12,19 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 
 	private StatNode[] totalBaseStatArray;
 
-	private PathfinderDwarfCharacter(String name) {
+	private PathfinderDwarfCharacter(PathfinderDwarfBuilder object) {
 
 		super();
 		
-		this.setName(name);
-
+		this.setName(object.name);
+		
+		this.setStatNodeValue(0, object.str);
+		this.setStatNodeValue(1, object.dex);
+		this.setStatNodeValue(2, object.con);
+		this.setStatNodeValue(3, object.inte);
+		this.setStatNodeValue(4, object.wis);
+		this.setStatNodeValue(5, object.cha);
+		
 		totalBaseStatArray = this.getStatNodeArray().clone();
 
 		for (int i = 0; i < totalBaseStatArray.length; i++) {
@@ -29,7 +36,7 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 
 	}
 	
-	public static class PathfinderDwarfBuilder{
+	public static class PathfinderDwarfBuilder{ //M3 Builder
 		String name;
 		int str, dex, con, inte, wis, cha;
 
@@ -67,8 +74,8 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 			return this;
 		}
 
-		public PathfinderDwarfBuilder build() {
-			return this;
+		public PathfinderDwarfCharacter build() {
+			return new PathfinderDwarfCharacter(this);
 		}
 	}
 

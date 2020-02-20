@@ -14,24 +14,58 @@ public class PathfinderHalfOrcCharacter extends PathfinderCharacter{
 	/*
 	 * Creating a copy of the statArray from the parent constructor class to keep track of any modifications to individual stats.
 	 */
-	private StatNode[] totalBaseStatArray;
+	
+	PathfinderCharacterBasicUtility halfOrc;
+	
+	StatNode[] totalBaseStatArray;
 
-	public PathfinderHalfOrcCharacter(String name) {
+	private PathfinderHalfOrcCharacter(PathfinderCharacterBuilder object) {
 
 		super();
-		this.setName(name);
-
-		totalBaseStatArray = this.getStatNodeArray().clone();
 		
-		totalBaseStatArray[0].setStatName("test");		
+		StatNode bonus = new StatNode();
+		bonus.setStatValue(statBonusAmount);
+		
+		this.setName(object.name);
+		this.setStatNodeValue(str, object.str);
+		this.setStatNodeValue(dex, object.dex);
+		this.setStatNodeValue(con, object.con);
+		this.setStatNodeValue(wis, object.wis);
+		this.setStatNodeValue(inte, object.inte);
+		this.setStatNodeValue(cha, object.cha);
+		
+		halfOrc = new PathfinderCharacterBasicUtility(this);
+		
+		halfOrc.addTempStatNodeToLink(statBonusChoice, bonus);
+		
+		halfOrc.saveTotalBaseStatArray();
+		
+		totalBaseStatArray = halfOrc.getTotalBaseStatArray();
+		
+		
+
+		/*
+		 * totalBaseStatArray = this.getStatNodeArray().clone();
+		 * 
+		 * for (int i = 0; i < totalBaseStatArray.length; i++) { totalBaseStatArray[i] =
+		 * new StatNode(); totalBaseStatArray[i].copy(this.getStatNode(i)); }
+		 * 
+		 * saveTotalBaseStatArray();
+		 */
+		// TODO Auto-generated constructor stub
+	}
 	
-		for (int i = 0; i < totalBaseStatArray.length; i++) {
-			totalBaseStatArray[i] = new StatNode();
-			totalBaseStatArray[i].copy(this.getStatNode(i));
+	public static class buildCharacter extends PathfinderCharacterBuilder { //M3 using abstract Builder
+		
+		public buildCharacter(String name) {
+			super(name);
+		}
+		
+		@Override
+		public PathfinderHalfOrcCharacter build() {
+			return new PathfinderHalfOrcCharacter(this);
 		}
 
-		saveTotalBaseStatArray();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void setStatBonusAmount(int amount) {
