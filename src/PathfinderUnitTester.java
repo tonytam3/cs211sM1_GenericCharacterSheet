@@ -1,62 +1,240 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import javafx.application.*;
+import javafx.event.*;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.stage.*;
 
-public class PathfinderUnitTester {
+
+public class PathfinderUnitTester extends Application{
+	
+	@Override
+	public void start(final Stage primaryStage) {
+		//Setting up 
+		Group root = new Group();
+		
+		//GridPane Settings
+		GridPane gridPane = new GridPane();
+	    gridPane.setHgap(10);
+	    gridPane.setVgap(10);
+	    gridPane.setGridLinesVisible(false);
+		
+		primaryStage.setTitle("Pathfinder Character Creation");
+		Scene scene = new Scene(gridPane, 500, 500, Color.BEIGE);
+		
+		//CharacterBasics Font Variable
+		int fontSize = 14;
+		
+		//Setup for Character Name
+		Label characterName = new Label("Character Name:");
+		characterName.setPadding(new Insets(5));
+		characterName.setFont(Font.font(fontSize));
+		characterName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField characterNameField = new TextField();
+		characterNameField.setPromptText("Enter Character Name");
+		
+	    gridPane.add(characterName, 0, 0);
+	    gridPane.add(characterNameField, 1, 0);
+				
+		//Setup for Character Stats
+	    
+	    //Strength
+		Label characterStrength = new Label("Strength:");
+		characterStrength.setPadding(new Insets(5));
+		characterStrength.setFont(Font.font(fontSize));
+		characterStrength.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField strengthField = new TextField();
+		strengthField.setPromptText("Enter Strength Stat");
+		
+		gridPane.add(characterStrength, 0, 1);
+		GridPane.setHalignment(characterStrength, HPos.RIGHT);
+		gridPane.add(strengthField, 1, 1);
+		
+		//Dexterity
+		Label characterDexterity = new Label("Dexterity");
+		characterDexterity.setPadding(new Insets(5));
+		characterDexterity.setFont(Font.font(fontSize));
+		characterDexterity.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField dexterityField = new TextField();
+		dexterityField.setPromptText("Enter Dexterity Stat");
+		
+		gridPane.add(characterDexterity, 0, 2);
+		GridPane.setHalignment(characterDexterity, HPos.RIGHT);
+		gridPane.add(dexterityField, 1, 2);
+		
+		//Constitution
+		Label characterConstitution = new Label("Constitution");
+		characterConstitution.setPadding(new Insets(5));
+		characterConstitution.setFont(Font.font(fontSize));
+		characterConstitution.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField constitutionField = new TextField();
+		constitutionField.setPromptText("Enter Constitution Stat");
+		
+		gridPane.add(characterConstitution, 0, 3);
+		GridPane.setHalignment(characterConstitution, HPos.RIGHT);
+		gridPane.add(constitutionField, 1, 3);
+		
+		//Intelligence
+		Label characterIntelligence = new Label("Intelligence");
+		characterIntelligence.setPadding(new Insets(5));
+		characterIntelligence.setFont(Font.font(fontSize));
+		characterIntelligence.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField intelligenceField = new TextField();
+		intelligenceField.setPromptText("Enter Intelligence Stat");
+		
+		gridPane.add(characterIntelligence, 0, 4);
+		GridPane.setHalignment(characterIntelligence, HPos.RIGHT);
+		gridPane.add(intelligenceField, 1, 4);
+		
+		//Wisdom
+		Label characterWisdom = new Label("Wisdom");
+		characterWisdom.setPadding(new Insets(5));
+		characterWisdom.setFont(Font.font(fontSize));
+		characterWisdom.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField wisdomField = new TextField();
+		wisdomField.setPromptText("Enter Wisdom Stat");
+		
+		gridPane.add(characterWisdom, 0, 5);
+		GridPane.setHalignment(characterWisdom, HPos.RIGHT);
+		gridPane.add(wisdomField, 1, 5);
+		
+		//Charisma 
+		Label characterCharisma = new Label("Charisma");
+		characterCharisma.setPadding(new Insets(5));
+		characterCharisma.setFont(Font.font(fontSize));
+		characterCharisma.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    
+		TextField charismaField = new TextField();
+		charismaField.setPromptText("Enter Charisma Stat");
+		
+		gridPane.add(characterCharisma, 0, 5);
+		GridPane.setHalignment(characterCharisma, HPos.RIGHT);
+		gridPane.add(charismaField, 1, 5);
+		
+		//Campaign Type Selection
+		Label campaignType = new Label("Campaign Type");
+		campaignType.setPadding(new Insets(5));
+		campaignType.setFont(Font.font(fontSize));
+		campaignType.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		
+		ComboBox<String> campaignTypeBox = new ComboBox<String>();
+		campaignTypeBox.getItems().add("Low Fantasy");
+		campaignTypeBox.getItems().add("Standard Fantasy");
+		campaignTypeBox.getItems().add("High Fantasy");
+		campaignTypeBox.getItems().add("Epic Fantasy");
+		campaignTypeBox.setPromptText("Select Type");
+		
+		gridPane.add(campaignType, 0, 6);
+		GridPane.setHalignment(campaignType, HPos.RIGHT);
+		gridPane.add(campaignTypeBox, 1, 6);
+		
+		
+		
+//	    Button btn = new Button();
+//	    btn.setText("Open Dialog");
+//	    
+//	    btn.setStyle("-fx-focus-color: transparent;");
+//
+//	    btn.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
+//	    btn.setOnAction(
+//	        new EventHandler<ActionEvent>() {
+//	            @Override
+//	            public void handle(ActionEvent event) {
+//	                final Stage dialog = new Stage();
+//	                dialog.initModality(Modality.APPLICATION_MODAL);
+//	                dialog.initOwner(primaryStage);
+//	                
+//	                GridPane dialogBox = new GridPane();
+//	                dialogBox.add(new Text ("This is a dialog"), 0, 0);
+//	                
+//	                
+//	                /*
+//	                VBox dialogVbox = new VBox(20);
+//	                dialogVbox.getChildren().add(new Text("This is a Dialog"));
+//	                */
+//	                Scene dialogScene = new Scene(dialogBox, 300, 200);
+//	                dialog.setScene(dialogScene);
+//	                dialog.show();
+//	            }
+//	         }
+//	        );
+	    
+
+	    primaryStage.setScene(scene);
+	    primaryStage.show();
+	    
+	    }
+		
+		
+	
 	
 	public static void main (String[] args) {
 		
-		//M3 using builder method built in to the class
-		PathfinderDwarfCharacter firstCharacter = (PathfinderDwarfCharacter) new PathfinderDwarfCharacter.PathfinderDwarfBuilder("Hank")
-				.str(10).dex(10).con(10).inte(10).wis(10).cha(10).build(); 
+		launch(args);
+
 		
-		System.out.println(firstCharacter);
-		
-		//M3 using factory 'PathfinderCharacterFactory' method that uses abstract builder method
-		PathfinderHalfOrcCharacter secondCharacter = (PathfinderHalfOrcCharacter) PathfinderCharacterFactory.newCharacter("halfOrc", "Bill");
-		
-		System.out.println(secondCharacter);
-		System.out.println();
-		
-		//M3 Sorting using comparator
-		
-		//firstCharacter is level 0 and secondCharacter is level 5
-		secondCharacter.setLevel(5);
-		
-		ArrayList<PathfinderCharacter> list = new ArrayList<PathfinderCharacter>();
-		
-		list.add(firstCharacter);
-		list.add(secondCharacter);
-		
-		Collections.sort(list, PathfinderCharacter.characterComparator);
-		
-		for(PathfinderCharacter temp: list) {
-			System.out.println(temp);
-		}
-		
-		System.out.println();
-		
-		//firstCharacter is level 10 and secondCharacter is level 5
-		firstCharacter.setLevel(10);
-		
-		Collections.sort(list, PathfinderCharacter.characterComparator);
-		
-		for(PathfinderCharacter temp: list) {
-			System.out.println(temp);
-		}
-		
-		//M3 Using money interface which is implemented by 'PathfinderOrcPurse' and 'PathfinderDwarfPurse'. 'PathfinderCharacter' will randomly select one of them.
-		
-		System.out.println();
-		System.out.println("M3 Testing Money Interface");
-		
-		System.out.println(firstCharacter);
-		System.out.println(firstCharacter.getMoney().moneyPrint());
-		
-		System.out.println();
-		
-		System.out.println(secondCharacter);
-		System.out.println(secondCharacter.getMoney().moneyPrint());
+//		//M3 using builder method built in to the class
+//		PathfinderDwarfCharacter firstCharacter = (PathfinderDwarfCharacter) new PathfinderDwarfCharacter.PathfinderDwarfBuilder("Hank")
+//				.str(10).dex(10).con(10).inte(10).wis(10).cha(10).build(); 
+//		
+//		System.out.println(firstCharacter);
+//		
+//		//M3 using factory 'PathfinderCharacterFactory' method that uses abstract builder method
+//		PathfinderHalfOrcCharacter secondCharacter = (PathfinderHalfOrcCharacter) PathfinderCharacterFactory.newCharacter("halfOrc", "Bill");
+//		
+//		System.out.println(secondCharacter);
+//		System.out.println();
+//		
+//		//M3 Sorting using comparator
+//		
+//		//firstCharacter is level 0 and secondCharacter is level 5
+//		secondCharacter.setLevel(5);
+//		
+//		ArrayList<PathfinderCharacter> list = new ArrayList<PathfinderCharacter>();
+//		
+//		list.add(firstCharacter);
+//		list.add(secondCharacter);
+//		
+//		Collections.sort(list, PathfinderCharacter.characterComparator);
+//		
+//		for(PathfinderCharacter temp: list) {
+//			System.out.println(temp);
+//		}
+//		
+//		System.out.println();
+//		
+//		//firstCharacter is level 10 and secondCharacter is level 5
+//		firstCharacter.setLevel(10);
+//		
+//		Collections.sort(list, PathfinderCharacter.characterComparator);
+//		
+//		for(PathfinderCharacter temp: list) {
+//			System.out.println(temp);
+//		}
+//		
+//		//M3 Using money interface which is implemented by 'PathfinderOrcPurse' and 'PathfinderDwarfPurse'. 'PathfinderCharacter' will randomly select one of them.
+//		
+//		System.out.println();
+//		System.out.println("M3 Testing Money Interface");
+//		
+//		System.out.println(firstCharacter);
+//		System.out.println(firstCharacter.getMoney().moneyPrint());
+//		
+//		System.out.println();
+//		
+//		System.out.println(secondCharacter);
+//		System.out.println(secondCharacter.getMoney().moneyPrint());
 		
 		/*
 		 * PathfinderCharacter[] characterArray = new PathfinderCharacter[5];
@@ -257,5 +435,7 @@ public class PathfinderUnitTester {
 		 */
 
 	}
+
+
 
 }
