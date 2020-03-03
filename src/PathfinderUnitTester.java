@@ -2,6 +2,7 @@ import javafx.application.*;
 import javafx.event.*;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -13,6 +14,9 @@ import javafx.stage.*;
 
 public class PathfinderUnitTester extends Application{
 	
+	//CharacterBasics Font Variable
+	static final private int fontSize = 14;
+	
 	@Override
 	public void start(final Stage primaryStage) {
 		//Setting up 
@@ -22,123 +26,110 @@ public class PathfinderUnitTester extends Application{
 		GridPane gridPane = new GridPane();
 	    gridPane.setHgap(10);
 	    gridPane.setVgap(10);
+	    gridPane.setPadding(new Insets(20));
 	    gridPane.setGridLinesVisible(false);
 		
 		primaryStage.setTitle("Pathfinder Character Creation");
 		Scene scene = new Scene(gridPane, 500, 500, Color.BEIGE);
 		
-		//CharacterBasics Font Variable
-		int fontSize = 14;
-		
 		//Setup for Character Name
-		Label characterName = new Label("Character Name:");
-		characterName.setPadding(new Insets(5));
-		characterName.setFont(Font.font(fontSize));
-		characterName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterName = basicInfoLabel("Character Name:");
 	    
 		TextField characterNameField = new TextField();
 		characterNameField.setPromptText("Enter Character Name");
 		
 	    gridPane.add(characterName, 0, 0);
 	    gridPane.add(characterNameField, 1, 0);
+	    
+	    //Set Seperator
+	    
+	    Separator line = new Separator(Orientation.HORIZONTAL);
+	    gridPane.add(line, 0, 1, 2,1 );
+	    
 				
 		//Setup for Character Stats
 	    
 	    //Strength
-		Label characterStrength = new Label("Strength:");
-		characterStrength.setPadding(new Insets(5));
-		characterStrength.setFont(Font.font(fontSize));
-		characterStrength.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterStrength = basicInfoLabel("Strength:");
 	    
 		TextField strengthField = new TextField();
 		strengthField.setPromptText("Enter Strength Stat");
 		
-		gridPane.add(characterStrength, 0, 1);
+		gridPane.add(characterStrength, 0, 2);
 		GridPane.setHalignment(characterStrength, HPos.RIGHT);
-		gridPane.add(strengthField, 1, 1);
+		gridPane.add(strengthField, 1, 2);
 		
 		//Dexterity
-		Label characterDexterity = new Label("Dexterity");
-		characterDexterity.setPadding(new Insets(5));
-		characterDexterity.setFont(Font.font(fontSize));
-		characterDexterity.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterDexterity = basicInfoLabel("Dexterity");
 	    
 		TextField dexterityField = new TextField();
 		dexterityField.setPromptText("Enter Dexterity Stat");
 		
-		gridPane.add(characterDexterity, 0, 2);
+		gridPane.add(characterDexterity, 0, 3);
 		GridPane.setHalignment(characterDexterity, HPos.RIGHT);
-		gridPane.add(dexterityField, 1, 2);
+		gridPane.add(dexterityField, 1, 3);
 		
 		//Constitution
-		Label characterConstitution = new Label("Constitution");
-		characterConstitution.setPadding(new Insets(5));
-		characterConstitution.setFont(Font.font(fontSize));
-		characterConstitution.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterConstitution = basicInfoLabel("Constitution");
 	    
 		TextField constitutionField = new TextField();
 		constitutionField.setPromptText("Enter Constitution Stat");
 		
-		gridPane.add(characterConstitution, 0, 3);
+		gridPane.add(characterConstitution, 0, 4);
 		GridPane.setHalignment(characterConstitution, HPos.RIGHT);
-		gridPane.add(constitutionField, 1, 3);
+		gridPane.add(constitutionField, 1, 4);
 		
 		//Intelligence
-		Label characterIntelligence = new Label("Intelligence");
-		characterIntelligence.setPadding(new Insets(5));
-		characterIntelligence.setFont(Font.font(fontSize));
-		characterIntelligence.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterIntelligence = basicInfoLabel("Intelligence");
 	    
 		TextField intelligenceField = new TextField();
 		intelligenceField.setPromptText("Enter Intelligence Stat");
 		
-		gridPane.add(characterIntelligence, 0, 4);
+		gridPane.add(characterIntelligence, 0, 5);
 		GridPane.setHalignment(characterIntelligence, HPos.RIGHT);
-		gridPane.add(intelligenceField, 1, 4);
+		gridPane.add(intelligenceField, 1, 5);
 		
 		//Wisdom
-		Label characterWisdom = new Label("Wisdom");
-		characterWisdom.setPadding(new Insets(5));
-		characterWisdom.setFont(Font.font(fontSize));
-		characterWisdom.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterWisdom = basicInfoLabel("Wisdom");
 	    
 		TextField wisdomField = new TextField();
 		wisdomField.setPromptText("Enter Wisdom Stat");
 		
-		gridPane.add(characterWisdom, 0, 5);
+		gridPane.add(characterWisdom, 0, 6);
 		GridPane.setHalignment(characterWisdom, HPos.RIGHT);
-		gridPane.add(wisdomField, 1, 5);
+		gridPane.add(wisdomField, 1, 6);
 		
 		//Charisma 
-		Label characterCharisma = new Label("Charisma");
-		characterCharisma.setPadding(new Insets(5));
-		characterCharisma.setFont(Font.font(fontSize));
-		characterCharisma.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label characterCharisma = basicInfoLabel("Charisma");
 	    
 		TextField charismaField = new TextField();
 		charismaField.setPromptText("Enter Charisma Stat");
 		
-		gridPane.add(characterCharisma, 0, 5);
+		gridPane.add(characterCharisma, 0, 7);
 		GridPane.setHalignment(characterCharisma, HPos.RIGHT);
-		gridPane.add(charismaField, 1, 5);
+		gridPane.add(charismaField, 1, 7);
 		
 		//Campaign Type Selection
-		Label campaignType = new Label("Campaign Type");
-		campaignType.setPadding(new Insets(5));
-		campaignType.setFont(Font.font(fontSize));
-		campaignType.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Label campaignType = basicInfoLabel("Campaign Type");
 		
 		ComboBox<String> campaignTypeBox = new ComboBox<String>();
-		campaignTypeBox.getItems().add("Low Fantasy");
-		campaignTypeBox.getItems().add("Standard Fantasy");
-		campaignTypeBox.getItems().add("High Fantasy");
-		campaignTypeBox.getItems().add("Epic Fantasy");
+		campaignTypeBox.getItems().addAll("Low Fantasy","Standard Fantasy","High Fantasy","Epic Fantasy");
 		campaignTypeBox.setPromptText("Select Type");
 		
-		gridPane.add(campaignType, 0, 6);
+		gridPane.add(campaignType, 0, 8);
 		GridPane.setHalignment(campaignType, HPos.RIGHT);
-		gridPane.add(campaignTypeBox, 1, 6);
+		gridPane.add(campaignTypeBox, 1, 8);
 		
+		//Race Selection
+		Label raceType = basicInfoLabel("Race Type");
+		
+		ComboBox<String> raceTypeBox = new ComboBox<String>();
+		raceTypeBox.getItems().addAll("Dwarf","Half-Orc");
+		
+	    //Set Separator
+	    
+	    Separator line2 = new Separator(Orientation.HORIZONTAL);
+	    gridPane.add(line2, 0, 1, 2,1 );
 		
 		
 //	    Button btn = new Button();
@@ -176,7 +167,16 @@ public class PathfinderUnitTester extends Application{
 	    
 	    }
 		
+	private Label basicInfoLabel (String labelName) {
 		
+		Label tempLabel = new Label(labelName);
+		tempLabel.setPadding(new Insets(5));
+		tempLabel.setFont(Font.font(fontSize));
+		tempLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		
+		return tempLabel;
+		
+	}
 	
 	
 	public static void main (String[] args) {
