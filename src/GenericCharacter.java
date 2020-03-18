@@ -114,7 +114,7 @@ public abstract class GenericCharacter {
 		StringBuilder tempString = new StringBuilder("Character Name: " + this.Name);
 
 		for (StatNode tempNode : this.statNodeArray) {
-			String nodeString = String.format("%s: %d, ", tempNode.getStatName(), tempNode.getStatValue());
+			String nodeString = String.format("%s: %d\n", tempNode.getStatName(), tempNode.getStatValue());
 			tempString.append(nodeString);
 		}
 

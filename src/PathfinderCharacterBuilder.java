@@ -1,9 +1,14 @@
 public abstract class PathfinderCharacterBuilder {
 	String name;
-	int str = 10, dex = 10, con = 10, inte = 10, wis = 10, cha = 10;
+	int format = 0, str = 10, dex = 10, con = 10, inte = 10, wis = 10, cha = 10;
 
 	public PathfinderCharacterBuilder(String name) {
 		this.name = name;
+	}
+	
+	public PathfinderCharacterBuilder format (int value) {
+		this.format = value;
+		return this;
 	}
 
 	public PathfinderCharacterBuilder str(int value) {

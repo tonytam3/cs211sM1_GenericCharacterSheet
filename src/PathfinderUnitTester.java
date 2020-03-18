@@ -1,189 +1,110 @@
 import javafx.application.*;
 import javafx.event.*;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
 import javafx.stage.*;
 
+public class PathfinderUnitTester extends Application {
 
-public class PathfinderUnitTester extends Application{
-	
-	//CharacterBasics Font Variable
-	static final private int fontSize = 14;
-	
-	@Override
-	public void start(final Stage primaryStage) {
-		//Setting up 
-		Group root = new Group();
-		
-		//GridPane Settings
-		GridPane gridPane = new GridPane();
-	    gridPane.setHgap(10);
-	    gridPane.setVgap(10);
-	    gridPane.setPadding(new Insets(20));
-	    gridPane.setGridLinesVisible(false);
-		
-		primaryStage.setTitle("Pathfinder Character Creation");
-		Scene scene = new Scene(gridPane, 500, 500, Color.BEIGE);
-		
-		//Setup for Character Name
-		Label characterName = basicInfoLabel("Character Name:");
-	    
-		TextField characterNameField = new TextField();
-		characterNameField.setPromptText("Enter Character Name");
-		
-	    gridPane.add(characterName, 0, 0);
-	    gridPane.add(characterNameField, 1, 0);
-	    
-	    //Set Seperator
-	    
-	    Separator line = new Separator(Orientation.HORIZONTAL);
-	    gridPane.add(line, 0, 1, 2,1 );
-	    
-				
-		//Setup for Character Stats
-	    
-	    //Strength
-		Label characterStrength = basicInfoLabel("Strength:");
-	    
-		TextField strengthField = new TextField();
-		strengthField.setPromptText("Enter Strength Stat");
-		
-		gridPane.add(characterStrength, 0, 2);
-		GridPane.setHalignment(characterStrength, HPos.RIGHT);
-		gridPane.add(strengthField, 1, 2);
-		
-		//Dexterity
-		Label characterDexterity = basicInfoLabel("Dexterity");
-	    
-		TextField dexterityField = new TextField();
-		dexterityField.setPromptText("Enter Dexterity Stat");
-		
-		gridPane.add(characterDexterity, 0, 3);
-		GridPane.setHalignment(characterDexterity, HPos.RIGHT);
-		gridPane.add(dexterityField, 1, 3);
-		
-		//Constitution
-		Label characterConstitution = basicInfoLabel("Constitution");
-	    
-		TextField constitutionField = new TextField();
-		constitutionField.setPromptText("Enter Constitution Stat");
-		
-		gridPane.add(characterConstitution, 0, 4);
-		GridPane.setHalignment(characterConstitution, HPos.RIGHT);
-		gridPane.add(constitutionField, 1, 4);
-		
-		//Intelligence
-		Label characterIntelligence = basicInfoLabel("Intelligence");
-	    
-		TextField intelligenceField = new TextField();
-		intelligenceField.setPromptText("Enter Intelligence Stat");
-		
-		gridPane.add(characterIntelligence, 0, 5);
-		GridPane.setHalignment(characterIntelligence, HPos.RIGHT);
-		gridPane.add(intelligenceField, 1, 5);
-		
-		//Wisdom
-		Label characterWisdom = basicInfoLabel("Wisdom");
-	    
-		TextField wisdomField = new TextField();
-		wisdomField.setPromptText("Enter Wisdom Stat");
-		
-		gridPane.add(characterWisdom, 0, 6);
-		GridPane.setHalignment(characterWisdom, HPos.RIGHT);
-		gridPane.add(wisdomField, 1, 6);
-		
-		//Charisma 
-		Label characterCharisma = basicInfoLabel("Charisma");
-	    
-		TextField charismaField = new TextField();
-		charismaField.setPromptText("Enter Charisma Stat");
-		
-		gridPane.add(characterCharisma, 0, 7);
-		GridPane.setHalignment(characterCharisma, HPos.RIGHT);
-		gridPane.add(charismaField, 1, 7);
-		
-		//Campaign Type Selection
-		Label campaignType = basicInfoLabel("Campaign Type");
-		
-		ComboBox<String> campaignTypeBox = new ComboBox<String>();
-		campaignTypeBox.getItems().addAll("Low Fantasy","Standard Fantasy","High Fantasy","Epic Fantasy");
-		campaignTypeBox.setPromptText("Select Type");
-		
-		gridPane.add(campaignType, 0, 8);
-		GridPane.setHalignment(campaignType, HPos.RIGHT);
-		gridPane.add(campaignTypeBox, 1, 8);
-		
-		//Race Selection
-		Label raceType = basicInfoLabel("Race Type");
-		
-		ComboBox<String> raceTypeBox = new ComboBox<String>();
-		raceTypeBox.getItems().addAll("Dwarf","Half-Orc");
-		
-	    //Set Separator
-	    
-	    Separator line2 = new Separator(Orientation.HORIZONTAL);
-	    gridPane.add(line2, 0, 1, 2,1 );
-		
-		
-//	    Button btn = new Button();
-//	    btn.setText("Open Dialog");
-//	    
-//	    btn.setStyle("-fx-focus-color: transparent;");
-//
-//	    btn.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
-//	    btn.setOnAction(
-//	        new EventHandler<ActionEvent>() {
-//	            @Override
-//	            public void handle(ActionEvent event) {
-//	                final Stage dialog = new Stage();
-//	                dialog.initModality(Modality.APPLICATION_MODAL);
-//	                dialog.initOwner(primaryStage);
-//	                
-//	                GridPane dialogBox = new GridPane();
-//	                dialogBox.add(new Text ("This is a dialog"), 0, 0);
-//	                
-//	                
-//	                /*
-//	                VBox dialogVbox = new VBox(20);
-//	                dialogVbox.getChildren().add(new Text("This is a Dialog"));
-//	                */
-//	                Scene dialogScene = new Scene(dialogBox, 300, 200);
-//	                dialog.setScene(dialogScene);
-//	                dialog.show();
-//	            }
-//	         }
-//	        );
-	    
+	private PathfinderView pathfinderGui;
+	private PathfinderCharacter emptyCharacter;
+	private Scene currentScene, scene1, scene2;
 
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
-	    
-	    }
+	public PathfinderUnitTester() {
+		pathfinderGui = new PathfinderView();
+		emptyCharacter = new PathfinderCharacter();
+		pathfinderGui.abilityScoreAmount.setText(String.valueOf(emptyCharacter.getAbilityScorePointAmount()));
+		pathfinderGui.setOnCalculateAbilityPoints(this::calculateAbilityPoint);
+		pathfinderGui.setOnCampaignTypeBox(this::setCampaignType);
+		pathfinderGui.setOnBuildButton(this::buildCharacter);
 		
-	private Label basicInfoLabel (String labelName) {
-		
-		Label tempLabel = new Label(labelName);
-		tempLabel.setPadding(new Insets(5));
-		tempLabel.setFont(Font.font(fontSize));
-		tempLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-		
-		return tempLabel;
-		
+
+	}
+
+	public void calculateAbilityPoint(ActionEvent handle) {
+
+		int abilityScoreAmount = emptyCharacter.getAbilityScorePointAmount();
+		int[] pointBuyChart = emptyCharacter.getPointBuyChart();
+
+		abilityScoreAmount = abilityScoreAmount - pointBuyChart[pathfinderGui.strengthField.getValue() - 7];
+		abilityScoreAmount = abilityScoreAmount - pointBuyChart[pathfinderGui.dexterityField.getValue() - 7];
+		abilityScoreAmount = abilityScoreAmount - pointBuyChart[pathfinderGui.constitutionField.getValue() - 7];
+		abilityScoreAmount = abilityScoreAmount - pointBuyChart[pathfinderGui.intelligenceField.getValue() - 7];
+		abilityScoreAmount = abilityScoreAmount - pointBuyChart[pathfinderGui.wisdomField.getValue() - 7];
+		abilityScoreAmount = abilityScoreAmount - pointBuyChart[pathfinderGui.charismaField.getValue() - 7];
+
+		if (abilityScoreAmount >= 0) {
+			pathfinderGui.setAbilityScoreAmount(abilityScoreAmount);
+		} else {
+			System.out.println("Not enough ability point left. Change base Stat.");
+		}
+	}
+
+	public void setCampaignType(ActionEvent handle) {
+
+		int number = pathfinderGui.campaignTypeBox.getSelectionModel().getSelectedIndex();
+
+		emptyCharacter.setAbilityScoreFormat(number);
+		pathfinderGui.abilityScoreAmount.setText(String.valueOf(emptyCharacter.getAbilityScorePointAmount()));
+
+	}
+
+	public void buildCharacter(ActionEvent handle) {
+
+		int abilityScoreAmount = pathfinderGui.getAbilityScoreAmount();
+		int abilityScoreFormat = pathfinderGui.campaignTypeBox.getSelectionModel().getSelectedIndex();
+		int number = pathfinderGui.raceTypeBox.getSelectionModel().getSelectedIndex();
+
+		if (abilityScoreAmount >= 0) {
+			
+			switch (number) {
+			case 0: emptyCharacter = (PathfinderDwarfCharacter) new PathfinderDwarfCharacter.PathfinderDwarfBuilder(pathfinderGui.getCharacterName())
+					.str(pathfinderGui.getStrength()).dex(pathfinderGui.getDexterity()).con(pathfinderGui.getConstitution()).inte(pathfinderGui.getIntelligence())
+					.wis(pathfinderGui.getWisdom()).cha(pathfinderGui.getCharisma()).format(abilityScoreFormat).build(); break;	
+			case 1: emptyCharacter = (PathfinderHalfOrcCharacter) new PathfinderHalfOrcCharacter.buildCharacter(pathfinderGui.getCharacterName())
+					.str(pathfinderGui.getStrength()).dex(pathfinderGui.getDexterity()).con(pathfinderGui.getConstitution()).inte(pathfinderGui.getIntelligence())
+					.wis(pathfinderGui.getWisdom()).cha(pathfinderGui.getCharisma()).format(abilityScoreFormat).build(); break;
+			}
+			
+			pathfinderGui.displayCharacter.setText(emptyCharacter.toString());
+
+			
+			System.out.println(emptyCharacter.toString());
+			
+			//Dump Old Character after build, restart with new character and update character with current settings
+			emptyCharacter = new PathfinderCharacter();
+			emptyCharacter.setAbilityScoreFormat(abilityScoreFormat);
+			//Use calculateAbilityPoint to update points left with current setting
+			this.calculateAbilityPoint(null);
+			
+			
+		} else {
+			System.out.println("Fix ability stat points before building.");
+		}	
+
 	}
 	
-	
-	public static void main (String[] args) {
-		
+
+	@Override
+	public void start(final Stage primaryStage) {
+
+		primaryStage.setTitle("Pathfinder Character Creation");
+		scene1 = new Scene(this.pathfinderGui.getParent1(), 500, 500, Color.BEIGE);
+		scene2 = new Scene(this.pathfinderGui.getParent2(),500,500,Color.WHITE);
+		primaryStage.setScene(scene1);
+		primaryStage.show();
+
+		if (!pathfinderGui.characterNameField.isFocused()) {
+			System.out.print(pathfinderGui.getCharacterName());
+		}
+
+	}
+
+	public static void main(String[] args) {
+
 		launch(args);
 
-		
 //		//M3 using builder method built in to the class
 //		PathfinderDwarfCharacter firstCharacter = (PathfinderDwarfCharacter) new PathfinderDwarfCharacter.PathfinderDwarfBuilder("Hank")
 //				.str(10).dex(10).con(10).inte(10).wis(10).cha(10).build(); 
@@ -235,7 +156,7 @@ public class PathfinderUnitTester extends Application{
 //		
 //		System.out.println(secondCharacter);
 //		System.out.println(secondCharacter.getMoney().moneyPrint());
-		
+
 		/*
 		 * PathfinderCharacter[] characterArray = new PathfinderCharacter[5];
 		 * 
@@ -435,7 +356,5 @@ public class PathfinderUnitTester extends Application{
 		 */
 
 	}
-
-
 
 }

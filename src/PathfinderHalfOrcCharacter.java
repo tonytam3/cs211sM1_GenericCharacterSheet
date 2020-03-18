@@ -27,12 +27,13 @@ public class PathfinderHalfOrcCharacter extends PathfinderCharacter{
 		bonus.setStatValue(statBonusAmount);
 		
 		this.setName(object.name);
-		this.setStatNodeValue(str, object.str);
-		this.setStatNodeValue(dex, object.dex);
-		this.setStatNodeValue(con, object.con);
-		this.setStatNodeValue(wis, object.wis);
-		this.setStatNodeValue(inte, object.inte);
-		this.setStatNodeValue(cha, object.cha);
+		this.setAbilityScoreFormat(object.format);
+		this.setBaseStatValue(str, object.str);
+		this.setBaseStatValue(dex, object.dex);
+		this.setBaseStatValue(con, object.con);
+		this.setBaseStatValue(wis, object.wis);
+		this.setBaseStatValue(inte, object.inte);
+		this.setBaseStatValue(cha, object.cha);
 		
 		halfOrc = new PathfinderCharacterBasicUtility(this);
 		
@@ -99,10 +100,10 @@ public class PathfinderHalfOrcCharacter extends PathfinderCharacter{
 	@Override
 	public String toString() {
 
-		StringBuilder tempString = new StringBuilder("Character Name: " + this.getName() + ", ");
+		StringBuilder tempString = new StringBuilder("Character Name: " + this.getName() + "\n");
 
 		for (StatNode tempNode : this.totalBaseStatArray) {
-			String nodeString = String.format("%s: %d, ", tempNode.getStatName(), tempNode.getStatValue());
+			String nodeString = String.format("%s: %d\n", tempNode.getStatName(), tempNode.getStatValue());
 			tempString.append(nodeString);
 		}
 

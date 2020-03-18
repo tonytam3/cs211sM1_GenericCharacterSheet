@@ -37,10 +37,12 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 
 		this.setLevel(1);
 		levelFormat = PathfinderLevelFormat.SLOW;
+		setAbilityScoreFormat(0);
 		
 		randomPurse();
 
 	}
+
 
 	public static class PathfinderCharacterComparator implements Comparator<PathfinderCharacter> {
 
@@ -75,7 +77,13 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 		return money;
 	}
 
+	public int getAbilityScorePointAmount() {
+		return AbilityScorePointAmount;
+	}
 
+	public int[] getPointBuyChart() {
+		return pointBuyChart;
+	}
 
 	public PathfinderLevelFormat getLevelFormat() {
 		return levelFormat;
@@ -146,11 +154,11 @@ public class PathfinderCharacter extends GenericCharacter implements Comparable<
 
 			if (AbilityScorePointFormat < 4) {
 
-				if (statValue > 8 && statValue < 19) {
+				if (statValue > 6 && statValue < 19) {
 
 					int statPointCost = pointBuyChart[(statValue - 7)];
 
-					if (AbilityScorePointAmount <= 0) {
+					if (AbilityScorePointAmount >= 0) {
 
 						this.setStatNodeValue(nodePosition, statValue);
 						AbilityScorePointAmount = AbilityScorePointAmount - statPointCost;

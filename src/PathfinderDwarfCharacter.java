@@ -17,13 +17,13 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 		super();
 		
 		this.setName(object.name);
-		
-		this.setStatNodeValue(0, object.str);
-		this.setStatNodeValue(1, object.dex);
-		this.setStatNodeValue(2, object.con);
-		this.setStatNodeValue(3, object.inte);
-		this.setStatNodeValue(4, object.wis);
-		this.setStatNodeValue(5, object.cha);
+		this.setAbilityScoreFormat(object.format);
+		this.setBaseStatValue(0, object.str);
+		this.setBaseStatValue(1, object.dex);
+		this.setBaseStatValue(2, object.con);
+		this.setBaseStatValue(3, object.inte);
+		this.setBaseStatValue(4, object.wis);
+		this.setBaseStatValue(5, object.cha);
 		
 		totalBaseStatArray = this.getStatNodeArray().clone();
 
@@ -38,10 +38,15 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 	
 	public static class PathfinderDwarfBuilder{ //M3 Builder
 		String name;
-		int str, dex, con, inte, wis, cha;
+		int format=0, str=7, dex=7, con=7, inte=7, wis=7, cha=7;
 
 		public PathfinderDwarfBuilder(String name) {
 			this.name = name;
+		}
+		
+		public PathfinderDwarfBuilder format (int value) {
+			this.format = value;
+			return this;
 		}
 
 		public PathfinderDwarfBuilder str(int value) {
@@ -122,10 +127,10 @@ public class PathfinderDwarfCharacter extends PathfinderCharacter {
 	@Override
 	public String toString() {
 
-		StringBuilder tempString = new StringBuilder("Character Name: " + this.getName() + ", ");
+		StringBuilder tempString = new StringBuilder("Character Name: " + this.getName() + "\n");
 
 		for (StatNode tempNode : this.totalBaseStatArray) {
-			String nodeString = String.format("%s: %d, ", tempNode.getStatName(), tempNode.getStatValue());
+			String nodeString = String.format("%s: %d\n", tempNode.getStatName(), tempNode.getStatValue());
 			tempString.append(nodeString);
 		}
 
